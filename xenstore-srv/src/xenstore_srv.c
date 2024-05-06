@@ -855,7 +855,7 @@ static int xss_do_write(const char *const_path, const char *data, uint32_t domid
 
 		if (iter == NULL) {
 			if (parent_entry && !check_perms(parent_entry, XS_PERM_WRITE, domid)) {
-				LOG_INF("Permission denied for domid#%u (%s)", domid, path);
+				LOG_INF("Permission denied for domid#%u (%s)", domid, const_path);
 				rc = -EACCES;
 				goto free_allocated;
 			}
@@ -902,7 +902,7 @@ static int xss_do_write(const char *const_path, const char *data, uint32_t domid
 
 	if (iter && data_len > 0) {
 		if (!check_perms(iter, XS_PERM_WRITE, domid)) {
-			LOG_INF("Permission denied for domid#%u (%s)", domid, path);
+			LOG_INF("Permission denied for domid#%u (%s)", domid, const_path);
 			rc = -EACCES;
 			goto free_allocated;
 		}
